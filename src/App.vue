@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div class="back bg-blue-400">
+  <div class="frame flex space-x-4 justify-center pt-4">
+    <div class="box bg-white w-80 h-72 rounded-lg">
+      <AdjustPay/>
+      </div>
+    <div class="box bg-white w-1/3 h-72 rounded-lg">
+      <AddNewEmployee/>
+      
+    </div>
+    <div class="box bg-white w-1/3 h-72 rounded-lg"></div>
+    
+    
   </div>
-</template>
+</div>
+  </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import AdjustPay from "./components/AdjustPay.vue"
+import AddNewEmployee from "./components/AddNewEmployee.vue"
 export default {
   name: 'App',
   components: {
-    HelloWorld
+   AddNewEmployee, AdjustPay
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+.back{height:100vh;}
+
+
 </style>
