@@ -1,6 +1,6 @@
 <template>
   <div class="div">
-      <span class="text-blue-400 text-2xl ml-2">Add New Employee</span>
+      <span class="text-indigo-500 text-2xl ml-2">Add New Employee</span>
       <div class="form flex flex-wrap justify-center w-full py-2">
           <div class="input flex flex-col px-2">
               <label for="" class="">
@@ -38,10 +38,10 @@
 
           </div>
           <div class="input flex flex-row px-2 mt-4 mr-12 space-x-2">
-              <button v-if="AddBtn" class="border-2 border-blue-400 text-blue-400 rounded px-4" disabled>Add</button>
-              <button class="bg-blue-400 text-white rounded px-4"  @click="add()" v-else>Add</button>
-              <button v-if="ClearBtn" class="bg-gray-200 text-white  rounded px-4">Clear</button>
-              <button class="bg-blue-300 text-white rounded px-4" @click="clear()" v-else>Clear</button>
+              <button v-if="AddBtn" class="border-2 border-indigo-400  text-indigo-400 rounded px-4" disabled>Add</button>
+              <button class="bg-indigo-500 text-white rounded px-4"  @click="add()" v-else>Add</button>
+              <button v-if="ClearBtn" class="bg-purple-200 text-white  rounded px-4">Clear</button>
+              <button class="bg-purple-300 text-white rounded px-4" @click="clear()" v-else>Clear</button>
             </div>
          <div v-show="PostError" class="msg bg-red-400 rounded w-full h-14 mx-2 my-7 flex justify-center items-center text-white font-bold">Something went wrong. Please try again</div>
          <div v-show="EmailError" class="msg bg-red-400 rounded w-full h-14 mx-2 my-7 flex justify-center items-center text-white font-bold">Valid Email Address is Required</div>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { collection, query, getDocs } from "firebase/firestore";
+import { collection, query, getDocs, addDoc } from "firebase/firestore";
 import {db} from '../firebase.js'
 export default {
     data(){
@@ -116,10 +116,27 @@ export default {
             this.PostSuccess=false;
             setTimeout(this.clearMessages, 4000);
             }else{
+            let data = {
+                firstname: this.fname,
+                lastname:this.lname,
+                email:this.email,
+                phone:this.phone,
+                position:this.pos
+            };
+            try{
+            addDoc(collection(db, "employees"),data).then((doc) => {
+                this.$root.$emit('fetchDoc', doc.id);
+            });
             this.PostError=false;
             this.EmailError=false;
             this.PostSuccess=true;
              setTimeout(this.clearMessages, 4000);
+            }catch(e){
+            this.PostError=true;
+            this.EmailError=false;
+            this.PostSuccess=false;
+             setTimeout(this.clearMessages, 4000);   
+            }
             }
         },
         clearMessages(){

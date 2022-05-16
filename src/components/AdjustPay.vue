@@ -1,6 +1,6 @@
 <template>
   <div class="div">
-      <span class="text-2xl text-blue-400 ml-2">Adjust Pay  <i class="fa-solid fa-user"></i> <font-awesome-icon icon="fa-light fa-arrow-rotate-left" /></span>
+      <span class="text-2xl text-indigo-500 ml-2">Adjust Pay  <i class="fa-solid fa-user"></i> <font-awesome-icon icon="fa-light fa-arrow-rotate-left" /></span>
       <div class="flex flex-col mt-2 mx-2 space-y-2">
           <div class="input flex flex-col">
               <label for="">Position</label>
@@ -15,7 +15,7 @@
               </div>
               <div class="input flex flex-col">
 
-                  <button class="bg-blue-400 py-2 mt-2  text-white rounded">Set</button>
+                  <button class="bg-gradient-to-r from-indigo-500 via-purple-500 py-2 mt-2  text-white rounded">Set</button>
               </div>
       </div>
   </div>
